@@ -53,7 +53,6 @@ contract ledger is Initialize {
     modifier onlySentor(){
         require(Isenator(senator).isSenator(msg.sender), "access denied: only senator");
         _;
-
     }
 
     function initialize(address _senator) external init{

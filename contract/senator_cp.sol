@@ -1,15 +1,14 @@
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.0;
 
-interface Ipledge{
-    function queryNodeRank(uint256 start, uint256 end) external view returns(address[] calldata, uint256[] calldata);
-}
+// interface Ipledge{
+//     function queryNodeRank(uint256 start, uint256 end) external view returns(address[] calldata, uint256[] calldata);
+// }
 
-interface Iconf{
-    function pledge()external view returns(address);
-    function poc()external view returns(address);
-}
+// interface Iconf{
+//     function pledge()external view returns(address);
+//     function poc()external view returns(address);
+// }
 
 contract Initialize {
     bool internal initialized;
@@ -29,27 +28,18 @@ contract senator is Initialize {
     uint public executerIndex;                 //执法者在共识集中的序号
     
     address[] public senators;                 //当前共识集
-    address public conf;                       //配置合约
+    address public admin;                      //管理员
 
     event UpdateSenator(uint indexed _epochId, address[] _sentors, uint _epochIndate);
     event UpdateExecuter(uint indexed _executerId, address _executer, uint _executerIndate);
 
-    modifier onlyPoc{
-        require(msg.sender == Iconf(conf).poc());
+    modifier onlyAdmin{
+        require(msg.sender == admin);
         _;
     }
 
-
-    function initialize(address _conf) external init{
-        conf = _conf;
-        
-        epochId = 1;
-        executerId = 1;
-        (senators,) = Ipledge(Iconf(conf).pledge()).queryNodeRank(1,11);
-        epochIndate = block.timestamp + 7 days;
-        executerIndate = block.timestamp + 1 days;
-        emit UpdateSenator(epochId, senators, epochIndate);
-        emit UpdateExecuter(executerId, _getExecuter(), executerIndate);
+    function initialize(address _admin) external init{
+        admin = _admin;
     }
 
     function _getExecuter() internal view returns(address) {
@@ -79,32 +69,17 @@ contract senator is Initialize {
         return false;
     }
 
-    function updateSenator() external onlyPoc{
-        require(block.timestamp > epochIndate, "unexpired");
-        address[] memory newSenators;
-        (newSenators,) = Ipledge(Iconf(conf).pledge()).queryNodeRank(1,11);
-        epochId++;
-        epochIndate += 7 days;
-        senators = newSenators;
-        executerId++;
-        executerIndex = 0;
-        executerIndate += 1 days;
+    function setSenator(address[] memory _senators, uint _epochId, uint _epochIndate, uint _executerId, uint _executerIndate) external onlyAdmin{
+        (senators, epochId, epochIndate, executerId, executerIndate) = (_senators, _epochId, _epochIndate, _executerId, _executerIndate);
 
+        executerIndex = 0;
         emit UpdateSenator(epochId, senators, epochIndate);
         emit UpdateExecuter(executerId, _getExecuter(), executerIndate);
     }
 
     //更新执法者
-    function updateExecuter() external onlyPoc{
-        if (executerIndex == senators.length){
-            executerIndex = 0;
-        }else{
-            executerIndex++;
-        }
-        
-        executerId++;
-        executerIndate += 1 days;
-
+    function setExecuter(uint _executerIndex, uint _executerId, uint _executerIndate) external onlyAdmin {
+        (executerIndex, _executerId, _executerIndate) = (_executerIndex, _executerId, _executerIndate);
         emit UpdateExecuter(executerId, _getNextExecuter(), executerIndate);
     }
 }
