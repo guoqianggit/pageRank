@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c81bdb83-695c-4a0b-8170-aabb9b8a0dce" name="Default Changelist" comment="" />
+    <list default="true" id="c81bdb83-695c-4a0b-8170-aabb9b8a0dce" name="Default Changelist" comment="modified senator.sol and add senator_cp.sol">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/artifacts/Iconf.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/artifacts/Iconf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/artifacts/Iconf_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/artifacts/Iconf_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/artifacts/Initialize.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/artifacts/Initialize.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/artifacts/Initialize_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/artifacts/Initialize_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/artifacts/Isenator_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/artifacts/Isenator_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/artifacts/Isnapshoot_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/artifacts/Isnapshoot_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/artifacts/Iupgrade_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/artifacts/Iupgrade_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/artifacts/poc.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/artifacts/poc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/artifacts/poc_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/artifacts/poc_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/poc.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contract/poc.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/proposal/artifacts/Iconf_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/proposal/artifacts/Iconf_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/proposal/artifacts/Initialize.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/proposal/artifacts/Initialize.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/proposal/artifacts/Initialize_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/proposal/artifacts/Initialize_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/proposal/artifacts/Isenator_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/proposal/artifacts/Isenator_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/proposal/artifacts/snapshoot.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/proposal/artifacts/snapshoot.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/proposal/artifacts/snapshoot_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/contract/proposal/artifacts/snapshoot_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/proposal/ledger.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contract/proposal/ledger.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contract/proposal/snapshoot.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contract/proposal/snapshoot.sol" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,19 +31,30 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/contract/poc.sol" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="23thB3auamukfepHUCNYSAYwn5V" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -34,10 +65,28 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="modified senator.sol and add senator_cp.sol" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified senator.sol and add senator_cp.sol" />
   </component>
 </project>

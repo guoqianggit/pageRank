@@ -29,11 +29,12 @@ contract ledger is Initialize {
     struct ledgerProposal{
         uint epochId;                         //共识周期
         address user;                         //用户
+        address token;                        //代币地址
         uint amount;                          //提取金额
         address proposer;                     //提案人
         uint proposalTime;                    //提案时间
-        uint assentor;                        //赞同者数量
-        uint unAssentor;                      //反对者数量
+        address[] assentors;                  //赞同者数量
+        address[] unAssentors;                //反对者数量
         Result result;                        //共识结果
     }
 
@@ -43,7 +44,7 @@ contract ledger is Initialize {
     //提案序号
     uint public nonce;
 
-    event SendLedgerProposal(uint indexed executerId, uint nonce, address user, uint amount);
+    event SendLedgerProposal(uint indexed executerId, uint nonce, address token, address user, uint amount);
     
     modifier onlyExecuter(){
         require(Isenator(senator).getExecuter() == msg.sender, "access denied: only Executer");
@@ -60,51 +61,62 @@ contract ledger is Initialize {
     }
     
     //发起快照提案
-    function sendLedgerProposal(address _user, uint _amount) external onlyExecuter{
+    function sendLedgerProposal(address _token, address _user, uint _amount) external onlyExecuter{
         uint _epochId = Isenator(senator).epochId();
         uint _executerId = Isenator(senator).executerId();
         if(ledgers[_executerId].length == 0){
-            //TODO:验证快照共识已经完成(若快照共识未完成责实时记账会出现差异)
+            //验证快照共识已经完成(若快照共识未完成责实时记账会出现差异)
             //该验证交由PR节点进行验证
             nonce = 0;
         }else{
-            //TODO：验证上一笔记账共识已完成
+            //验证上一笔记账共识已完成
             require(ledgers[_executerId][nonce].result != Result.PENDING, "The latest proposal has no resolution");
             nonce++;
         }
 
+        address[] memory nilArray;
         ledgers[_executerId].push(ledgerProposal(
             {
                 epochId: _epochId,
                 user: _user,
+                token: _token,
                 amount: _amount,
                 proposer: msg.sender,
                 proposalTime: block.timestamp,
-                assentor: 0,
-                unAssentor: 0,
+                assentors: nilArray,
+                unAssentors: nilArray,
                 result: Result.PENDING
             }
         ));
-
-        emit SendLedgerProposal(_executerId, nonce, _user, _amount);
+        ledgers[_executerId].assentors.push(msg.sender);
+        emit SendLedgerProposal(_executerId, nonce, _token, _user, _amount);
     }
     
      //获取最新提案
-    function latestLedgerProposal() external view returns(uint epochId, address user, uint amount, address proposer, uint proposalTime, uint result){
+    function latestLedgerProposal() external view returns(uint epochId, address token, address user, uint amount, address proposer, uint proposalTime, uint result){
         ledgerProposal memory lp = ledgers[Isenator(senator).executerId()][nonce];
-        return(lp.epochId, lp.user, lp.amount, lp.proposer, lp.proposalTime, uint(lp.result));
+        return(lp.epochId, lp.token, lp.user, lp.amount, lp.proposer, lp.proposalTime, uint(lp.result));
     }
     
     //表决提案
     function vote(bool v) external onlySentor{
         uint executerId = Isenator(senator).executerId(); 
         require(ledgers[executerId][nonce].result == Result.PENDING,"Reached a consensus");
+
+        for (uint i=0; i < ledgers[executerId][nonce].assentors.length; i++){
+            require(ledgers[executerId][nonce].assentors[i] != msg.sender,  "multiple voting");
+        }
+
+        for (uint i=0; i < ledgers[executerId][nonce].unAassentors.length; i++){
+            require(ledgers[executerId][nonce].assentors[i] != msg.sender,  "multiple voting");
+        }
+
         if(v) {
-            ledgers[executerId][nonce].assentor++;
-            if (ledgers[executerId][nonce].assentor>=6) ledgers[executerId][nonce].result = Result.SUCCESS;
+            ledgers[executerId][nonce].assentors.push(msg.sender);
+            if (ledgers[executerId][nonce].assentors.length >= 6) ledgers[executerId][nonce].result = Result.SUCCESS;
         }else{
-            ledgers[executerId][nonce].unAssentor++;
-            if (ledgers[executerId][nonce].unAssentor>=6) ledgers[executerId][nonce].result = Result.FAILED;
+            ledgers[executerId][nonce].unAssentors.push(msg.sender);
+            if (ledgers[executerId][nonce].unAssentors.length >= 6) ledgers[executerId][nonce].result = Result.FAILED;
         }
     }
 
