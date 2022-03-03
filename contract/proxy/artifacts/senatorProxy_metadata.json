@@ -6,6 +6,22 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "impl",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -123,7 +139,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"PangeRank/contract/proxy/proxy.sol": "basePorxy"
+			"contract/proxy/senatorProxy.sol": "senatorProxy"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -137,12 +153,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"PangeRank/contract/proxy/proxy.sol": {
-			"keccak256": "0x8331de3416e8f96245f14003c8525d82b48dcc6d5d1be00b7f18fad45d7f19c0",
+		"contract/proxy/proxy.sol": {
+			"keccak256": "0x8845684fa265fee00c4c79d50a63eef6fbcfb27a73d9978fbd2c2efbb83c4348",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c22c92b95e051fb3db3babe9635a8345048b453c5dbf9db73287035c259c06d1",
-				"dweb:/ipfs/QmZubgFRaKR8M3nsSuKPktM9k9HcvuT9NE79fDJBVStjmk"
+				"bzz-raw://7293525340bd4d1d6e51346d296d86eee5f6309c501087100fc3ea2cc6ca2941",
+				"dweb:/ipfs/QmTCJaP1tEwkdXeenjKnexkv3YkFjKc6UxyEo28UrPkvjQ"
+			]
+		},
+		"contract/proxy/senatorProxy.sol": {
+			"keccak256": "0xbe71159e7af2de3e67388ab1d8131655324308ffaf0492bfaa095de7c9ce8eb4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8a4bbb91971b4ce1a1ec4e79f3643f921f384913303249585ce1b2b91a6e2b93",
+				"dweb:/ipfs/QmarYzLXdvtyS6sJF4zs3GnDhp1KmRHHNjD5TocSTdMuAG"
 			]
 		}
 	},

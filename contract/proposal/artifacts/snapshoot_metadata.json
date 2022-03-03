@@ -1,0 +1,302 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "executerId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "executer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "prHash",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "prId",
+						"type": "string"
+					}
+				],
+				"name": "SendSnapshootProposal",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "conf",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_conf",
+						"type": "address"
+					}
+				],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "isOutLine",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "isResolution",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "latestSnapshootProposal",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "epochId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "executerId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "prHash",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "prId",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "proposer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "proposalTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "result",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "latestSuccesSnapshootProposal",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "epochId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "executerId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "prHash",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "prId",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "proposer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "proposalTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "result",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_prHash",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_prId",
+						"type": "string"
+					}
+				],
+				"name": "sendSnapshootProposal",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "snapshoots",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "epochId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "executerId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "prHash",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "prId",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "proposer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "proposalTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum snapshoot.Result",
+						"name": "result",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "veto",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "v",
+						"type": "bool"
+					}
+				],
+				"name": "vote",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contract/proposal/snapshoot.sol": "snapshoot"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contract/proposal/snapshoot.sol": {
+			"keccak256": "0xed0c945461acdbd36d2ce02f00ef7ba571552589fdb6b495fbfd0d4b2c3bf142",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://21b063571c3ae1303cb63f1c86582f64f68cd172bd2189bde0f571f85f489386",
+				"dweb:/ipfs/QmPCRdJXLzNwAaGZ2JgSRWCnFXRDzWSr5zB5DvjRBmwLch"
+			]
+		}
+	},
+	"version": 1
+}

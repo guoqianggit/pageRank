@@ -9,7 +9,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "consensus",
+						"name": "admin",
 						"type": "address"
 					},
 					{
@@ -139,7 +139,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/PangeRank/contract/proxy/confProxy.sol": "TraderProxy"
+			"contract/proxy/ledgerProxy.sol": "ledgerProxy"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -147,21 +147,21 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"localhost/PangeRank/contract/proxy/confProxy.sol": {
-			"keccak256": "0x78b13969fc120181482ee7a802ce1dde251796bc039b7c175f4f9cb0626fc4fc",
+		"contract/proxy/ledgerProxy.sol": {
+			"keccak256": "0x8a72dc2c60b77ea2dce9d4409efea9d548a15315ba67ed0ec9752be130afc77d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://43d84dea3bf9524a973903478f96dc2b8d3940b4e45a7404a2f2f23bd1cc0814",
-				"dweb:/ipfs/QmebsY2yPTZLzrMLuXp1yAdpfq9DaJ3zrDCtATgzhzkUtL"
+				"bzz-raw://ffd9630d3296126d3ab6ef91a1614ef1ad0968c840090a191471b032d0655c1b",
+				"dweb:/ipfs/QmXuAwpZ3hdTz9d7xp6UopN8MCDcAhzqjf1V9MwR4XtnDF"
 			]
 		},
-		"localhost/PangeRank/contract/proxy/proxy.sol": {
+		"contract/proxy/proxy.sol": {
 			"keccak256": "0x8845684fa265fee00c4c79d50a63eef6fbcfb27a73d9978fbd2c2efbb83c4348",
 			"license": "MIT",
 			"urls": [

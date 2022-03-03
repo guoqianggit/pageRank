@@ -18,7 +18,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contract/proxy/proxy.sol": "StorageSlot"
+			"contract/proposal/snapshoot.sol": "Initialize"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -26,18 +26,18 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"contract/proxy/proxy.sol": {
-			"keccak256": "0x8845684fa265fee00c4c79d50a63eef6fbcfb27a73d9978fbd2c2efbb83c4348",
+		"contract/proposal/snapshoot.sol": {
+			"keccak256": "0xed0c945461acdbd36d2ce02f00ef7ba571552589fdb6b495fbfd0d4b2c3bf142",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7293525340bd4d1d6e51346d296d86eee5f6309c501087100fc3ea2cc6ca2941",
-				"dweb:/ipfs/QmTCJaP1tEwkdXeenjKnexkv3YkFjKc6UxyEo28UrPkvjQ"
+				"bzz-raw://21b063571c3ae1303cb63f1c86582f64f68cd172bd2189bde0f571f85f489386",
+				"dweb:/ipfs/QmPCRdJXLzNwAaGZ2JgSRWCnFXRDzWSr5zB5DvjRBmwLch"
 			]
 		}
 	},

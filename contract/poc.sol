@@ -40,6 +40,7 @@ contract Initialize {
 
 contract poc is Initialize{
     address public conf;
+    event log(string);
 
     function initialize(address _conf) external init{
         conf = _conf;
@@ -47,26 +48,23 @@ contract poc is Initialize{
 
     //一票否决还未通过的提案
     function _veto() internal {
-        if (Isnapshoot(Iconf(conf).snapshoot()).isResolution()) Isnapshoot(Iconf(conf).snapshoot()).veto(); 
-        if (Iupgrade(Iconf(conf).upgrade()).isResolution()) Iupgrade(Iconf(conf).upgrade()).veto();
+        Isnapshoot  It = Isnapshoot(Iconf(conf).snapshoot());
+        if (!It.isResolution()) It.veto(); 
+        //if (!Iupgrade(Iconf(conf).upgrade()).isResolution()) Iupgrade(Iconf(conf).upgrade()).veto();
     }
 
     //更新执法者
     function updateExecuter() external{
-        require(
-            //执法者到期
-            block.timestamp > Isenator(Iconf(conf).senator()).executerIndate() ||
-            //执法者违规
-            Isnapshoot(Iconf(conf).snapshoot()).isOutLine(), 
-            "access denied"
-        );
-
+        Isenator Is = Isenator(Iconf(conf).senator());
+        Isnapshoot  It = Isnapshoot(Iconf(conf).snapshoot());
+        require( block.timestamp > Is.executerIndate() || It.isOutLine(), "access denied");
+        
         _veto();
-       
-        if (block.timestamp > Isenator(Iconf(conf).senator()).epochIndate()){
-            Isenator(Iconf(conf).senator()).updateSenator();
+    
+        if (block.timestamp > Is.epochIndate()){
+            Is.updateSenator();
         }else{
-            Isenator(Iconf(conf).senator()).updateExecuter();
+            Is.updateExecuter();
         }
 
         //TODO: 添加奖励

@@ -7,8 +7,10 @@ interface Ipledge{
 }
 
 interface Iconf{
-    function pledge()external view returns(address);
-    function poc()external view returns(address);
+    function pledge() external view returns(address);
+    function poc() external view returns(address);
+    function epoch() external view returns(uint);
+    function executEpoch() external view returns(uint);
 }
 
 contract Initialize {
@@ -30,7 +32,8 @@ contract senator is Initialize {
     
     address[] public senators;                 //当前共识集
     address public conf;                       //配置合约
-
+    //uint[] public offset;                      //换届偏移量
+    
     event UpdateSenator(uint indexed _epochId, address[] _sentors, uint _epochIndate);
     event UpdateExecuter(uint indexed _executerId, address _executer, uint _executerIndate);
 
@@ -39,21 +42,26 @@ contract senator is Initialize {
         _;
     }
 
-
     function initialize(address _conf) external init{
         conf = _conf;
-        
         epochId = 1;
         executerId = 1;
         (senators,) = Ipledge(Iconf(conf).pledge()).queryNodeRank(1,11);
-        epochIndate = block.timestamp + 7 days;
-        executerIndate = block.timestamp + 1 days;
+        epochIndate = block.timestamp + Iconf(conf).epoch();
+        executerIndate = block.timestamp + Iconf(conf).executEpoch();
+
         emit UpdateSenator(epochId, senators, epochIndate);
         emit UpdateExecuter(executerId, _getExecuter(), executerIndate);
     }
 
     function _getExecuter() internal view returns(address) {
-         return senators[executerId];
+         return senators[executerIndex];
+    }
+
+    //仅用于测试环境
+    function reset() external {
+        epochIndate = block.timestamp + Iconf(conf).epoch();
+        executerIndate = block.timestamp + Iconf(conf).executEpoch();
     }
     
     //查询执法者
@@ -63,7 +71,7 @@ contract senator is Initialize {
 
     function _getNextExecuter() internal view returns(address) {
         if (executerIndex == senators.length) return senators[0]; 
-        return senators[executerId+1];
+        return senators[executerIndex+1];
     }
     
     //查询执法者继任人
@@ -79,16 +87,17 @@ contract senator is Initialize {
         return false;
     }
 
+    //更新共识集
     function updateSenator() external onlyPoc{
         require(block.timestamp > epochIndate, "unexpired");
-        address[] memory newSenators;
-        (newSenators,) = Ipledge(Iconf(conf).pledge()).queryNodeRank(1,11);
+        (senators,) = Ipledge(Iconf(conf).pledge()).queryNodeRank(1,11);
+
         epochId++;
-        epochIndate += 7 days;
-        senators = newSenators;
+        epochIndate = block.timestamp + Iconf(conf).epoch();
+        
         executerId++;
         executerIndex = 0;
-        executerIndate += 1 days;
+        executerIndate = block.timestamp + Iconf(conf).executEpoch();
 
         emit UpdateSenator(epochId, senators, epochIndate);
         emit UpdateExecuter(executerId, _getExecuter(), executerIndate);
@@ -96,15 +105,15 @@ contract senator is Initialize {
 
     //更新执法者
     function updateExecuter() external onlyPoc{
-        if (executerIndex == senators.length){
+        if (executerIndex == senators.length-1){
             executerIndex = 0;
         }else{
             executerIndex++;
         }
         
         executerId++;
-        executerIndate += 1 days;
+        executerIndate = block.timestamp + Iconf(conf).executEpoch();
 
-        emit UpdateExecuter(executerId, _getNextExecuter(), executerIndate);
+        emit UpdateExecuter(executerId, _getExecuter(), executerIndate);
     }
 }

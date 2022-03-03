@@ -23,9 +23,22 @@ contract Conf is Initialize {
     address public senator;
     address public poc;
     address public developer;
+    //seting
+    uint public epoch;          //共识周期
+    uint public executEpoch;    //执法周期
+    uint public stEpoch;        //提案周期
+    uint public voteEpoch;      //投票周期
+    uint public offLine;        //共识下线
+  
 
     function initialize(address _pledge, address _snapshoot, address _upgrade, address _senator, address _poc) external init{
         (pledge, snapshoot, upgrade, senator, poc, developer) = (_pledge, _snapshoot, _upgrade, _senator, _poc, msg.sender);
+        (epoch, executEpoch, stEpoch, voteEpoch, offLine) = (7 days,  1 days, 1 hours, 1 hours, 6);
+    }
+    
+    //仅用于测试环境
+    function setEpoch(uint _epoch, uint _executEpoch, uint _stEpoch, uint _voteEpoch) external {
+        (epoch, executEpoch, stEpoch, voteEpoch) = (_epoch, _executEpoch, _stEpoch, _voteEpoch);
     }
 
     //调试时测试，升级本合约情况是否合法。

@@ -6,17 +6,13 @@
 	"output": {
 		"abi": [
 			{
-				"stateMutability": "payable",
-				"type": "fallback"
-			},
-			{
 				"inputs": [],
-				"name": "admin",
+				"name": "isResolution",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "bool",
 						"name": "",
-						"type": "address"
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -24,20 +20,10 @@
 			},
 			{
 				"inputs": [],
-				"name": "logic",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
+				"name": "veto",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"stateMutability": "payable",
-				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -53,7 +39,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contract/proxy/proxy.sol": "Proxy"
+			"contract/poc.sol": "Iupgrade"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -61,18 +47,18 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"contract/proxy/proxy.sol": {
-			"keccak256": "0x8845684fa265fee00c4c79d50a63eef6fbcfb27a73d9978fbd2c2efbb83c4348",
+		"contract/poc.sol": {
+			"keccak256": "0x14cacdebffa89772a017bc1634b05ac1027fc95c191391e6cf4c3328987a5ef6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7293525340bd4d1d6e51346d296d86eee5f6309c501087100fc3ea2cc6ca2941",
-				"dweb:/ipfs/QmTCJaP1tEwkdXeenjKnexkv3YkFjKc6UxyEo28UrPkvjQ"
+				"bzz-raw://2d5f692073725252b04863910723817d431588b9af5ed0a58e646d8ab7af6119",
+				"dweb:/ipfs/QmXCAJErZF9Cu3kJSnfEgViPpDj7FwkRFw5JJZxTGwnWst"
 			]
 		}
 	},

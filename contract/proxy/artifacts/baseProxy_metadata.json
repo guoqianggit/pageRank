@@ -123,7 +123,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"PangeRank/contract/proxy/proxy.sol": "baseProxy"
+			"contract/proxy/proxy.sol": "baseProxy"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -131,13 +131,13 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"PangeRank/contract/proxy/proxy.sol": {
+		"contract/proxy/proxy.sol": {
 			"keccak256": "0x8845684fa265fee00c4c79d50a63eef6fbcfb27a73d9978fbd2c2efbb83c4348",
 			"license": "MIT",
 			"urls": [
