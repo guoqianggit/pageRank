@@ -1,0 +1,225 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "target",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "descURL",
+						"type": "string"
+					}
+				],
+				"name": "SendUpgradeProposal",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "conf",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_conf",
+						"type": "address"
+					}
+				],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "isResolution",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "latestUpgradeProposal",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "target",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "newAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "descURL",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_target",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_newAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_descURL",
+						"type": "string"
+					}
+				],
+				"name": "sendUpgradeProposal",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "upgrades",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "target",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "newAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "descURL",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "proposalTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "assentor",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "unAssentor",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum upgrade.Result",
+						"name": "result",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "veto",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "v",
+						"type": "bool"
+					}
+				],
+				"name": "vote",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contract/proposal/upgrade.sol": "upgrade"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contract/proposal/upgrade.sol": {
+			"keccak256": "0x8d4de27b10a7bcf2e9a68ca330e30ab3cc6b47fc211d02f8a9bf09e1d7f91670",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://32a17bf741bf5bcd60654f460490e9b0fb8a770e27c8235df8b297ac43014b17",
+				"dweb:/ipfs/QmRsZMjri6socVMXGRzJhNgiyctZ2q9pDs2FWWPCRqBn8L"
+			]
+		}
+	},
+	"version": 1
+}
