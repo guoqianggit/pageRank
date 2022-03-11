@@ -35,6 +35,7 @@ contract ledger is Initialize {
         uint proposalTime;                    //提案时间
         address[] assentors;                  //赞同者数量
         address[] unAssentors;                //反对者数量
+        uint256 expiration;                   //过期时间
         Result result;                        //共识结果
     }
 
@@ -70,6 +71,9 @@ contract ledger is Initialize {
             nonce = 0;
         }else{
             //验证上一笔记账共识已完成
+            if(ledgers[_executerId][nonce].expiration <= block.timestamp){
+                ledgers[_executerId][nonce].result == Result.FAILED;
+            }
             require(ledgers[_executerId][nonce].result != Result.PENDING, "The latest proposal has no resolution");
             nonce++;
         }
@@ -85,29 +89,31 @@ contract ledger is Initialize {
                 proposalTime: block.timestamp,
                 assentors: nilArray,
                 unAssentors: nilArray,
+                expiration: block.timestamp + 3600,
                 result: Result.PENDING
             }
         ));
-        ledgers[_executerId].assentors.push(msg.sender);
+        ledgers[_executerId][nonce].assentors.push(msg.sender);
         emit SendLedgerProposal(_executerId, nonce, _token, _user, _amount);
     }
     
      //获取最新提案
-    function latestLedgerProposal() external view returns(uint epochId, address token, address user, uint amount, address proposer, uint proposalTime, uint result){
+    function latestLedgerProposal() external view returns(uint epochId, address token, address user, uint amount, address proposer, uint proposalTime, uint expiration, uint result){
         ledgerProposal memory lp = ledgers[Isenator(senator).executerId()][nonce];
-        return(lp.epochId, lp.token, lp.user, lp.amount, lp.proposer, lp.proposalTime, uint(lp.result));
+        return(lp.epochId, lp.token, lp.user, lp.amount, lp.proposer, lp.proposalTime, lp.expiration, uint(lp.result));
     }
     
     //表决提案
     function vote(bool v) external onlySentor{
         uint executerId = Isenator(senator).executerId(); 
         require(ledgers[executerId][nonce].result == Result.PENDING,"Reached a consensus");
+        require(ledgers[executerId][nonce].expiration <= block.timestamp,"The transaction exceeded the time limit");
 
         for (uint i=0; i < ledgers[executerId][nonce].assentors.length; i++){
             require(ledgers[executerId][nonce].assentors[i] != msg.sender,  "multiple voting");
         }
 
-        for (uint i=0; i < ledgers[executerId][nonce].unAassentors.length; i++){
+        for (uint i=0; i < ledgers[executerId][nonce].unAssentors.length; i++){
             require(ledgers[executerId][nonce].assentors[i] != msg.sender,  "multiple voting");
         }
 
@@ -116,7 +122,10 @@ contract ledger is Initialize {
             if (ledgers[executerId][nonce].assentors.length >= 6) ledgers[executerId][nonce].result = Result.SUCCESS;
         }else{
             ledgers[executerId][nonce].unAssentors.push(msg.sender);
-            if (ledgers[executerId][nonce].unAssentors.length >= 6) ledgers[executerId][nonce].result = Result.FAILED;
+            if (ledgers[executerId][nonce].unAssentors.length >= 6) {
+                ledgers[executerId][nonce].result = Result.FAILED;
+
+            }
         }
     }
 
